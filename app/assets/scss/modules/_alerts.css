@@ -1,0 +1,17 @@
+.notice {
+    margin: 10px 0px;
+    padding: 20px;
+    background-color: $COLOR_SECONDARY;
+    border: thin solid $COLOR_PRIMARY;
+    color: $COLOR_PRIMARY;
+    text-align: center;
+}
+
+.alert {
+    margin: 10px 0px;
+    padding: 20px;
+    background-color: #ffb3b3;
+    border: thin solid #ff3333;
+    color: #ff6666;
+    text-align: center;
+}

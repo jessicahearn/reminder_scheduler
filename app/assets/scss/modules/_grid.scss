@@ -1,0 +1,15 @@
+.grid {
+    @include clearfix;
+}
+
+.grid-col {
+    float: left;
+}
+
+@for $GRID-COLS from 1 through 12 {
+    @for $GRID-TOTAL from 1 through 12 {
+        .grid-col_#{$GRID-COLS}of#{$GRID-TOTAL} {
+            width: percentage($GRID-COLS / $GRID-TOTAL);
+        }
+    }
+}

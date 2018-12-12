@@ -1,0 +1,22 @@
+<div class="header">
+    <div class="wrapper">
+        <div class="grid">
+            <div class="grid-col grid-col_6of12">
+                <%= link_to root_url do %>
+                    <h1 class="hdg hdg_1">Reminder Scheduler</h1>
+                <% end %>
+            </div>
+            <div class="grid-col grid-col_6of12">
+                <div class="text_right">
+                    <% if user_signed_in? %>
+                        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+                    <% else %>
+                        <%= link_to('Login', new_user_session_path)  %>
+                        |
+                        <%= link_to('Register', new_user_registration_path)  %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
