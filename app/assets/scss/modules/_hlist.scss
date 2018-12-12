@@ -1,0 +1,13 @@
+.hlist > * {
+    display: inline-block;
+    padding-left: 0px;
+}
+
+.hlist > * + * {
+    padding-left: 6px;
+}
+
+.hlist_piped > * + * {
+    margin-left: 2px;
+    border-left: thin solid $COLOR_PRIMARY;
+}

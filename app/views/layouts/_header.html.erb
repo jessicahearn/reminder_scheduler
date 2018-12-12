@@ -3,13 +3,20 @@
         <div class="grid">
             <div class="grid-col grid-col_6of12">
                 <%= link_to root_url do %>
-                    <h1 class="hdg hdg_1">Reminder Scheduler</h1>
+                    <h1 class="hdg hdg_1 hdg_white">Reminder Scheduler</h1>
                 <% end %>
             </div>
             <div class="grid-col grid-col_6of12">
                 <div class="text_right">
                     <% if user_signed_in? %>
-                        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+                        <div class="mod">
+                            <div>
+                                <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+                            </div>
+                            <div class="text_small">
+                                Signed in as: <%= current_user.try(:email) %>
+                            </div>
+                        </div>
                     <% else %>
                         <%= link_to('Login', new_user_session_path)  %>
                         |

@@ -1,0 +1,20 @@
+.table {
+    width: 100%;
+}
+
+.table,
+.table th,
+.table td {
+    border: thin solid $COLOR_PRIMARY;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+}
+
+.table th {
+    background-color: $COLOR_SECONDARY;
+    color: $COLOR_PRIMARY;
+}
+

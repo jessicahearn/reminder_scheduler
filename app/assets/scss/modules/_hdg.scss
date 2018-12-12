@@ -1,7 +1,21 @@
 .hdg {
+    padding: 20px 0px 8px 0px;
     font-weight: bold;
+    color: $COLOR_PRIMARY;
 }
 
-.hdg {
+.hdg_1 {
     font-size: 2em;
+}
+
+.hdg_2 {
+    font-size: 1.6em;
+}
+
+.hdg_3 {
+    font-size: 1em;
+}
+
+.hdg_white {
+    color: #ffffff;
 }

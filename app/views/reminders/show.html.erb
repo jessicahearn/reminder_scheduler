@@ -1,3 +1,22 @@
-<div>User Email: <%= @reminder.try(:user).try(:email) %></div>
-<div>Title: <%= @reminder.try(:title) %></div>
-<div>Description: <%= @reminder.try(:description) %></div>
+<h2 class="hdg hdg_2">Reminder #<%= @reminder.id %></h2>
+
+<div class="vr">
+    <div class="mod">
+        <div>
+            <div class="hdg hdg_3">User Email</div>
+            <div><%= @reminder.try(:user).try(:email) %></div>
+        </div>
+        <div>
+            <div class="hdg hdg_3">Title</div>
+            <div><%= @reminder.try(:title) %></div>
+        </div>
+        <div>
+            <div class="hdg hdg_3">Description</div>
+            <div><%= @reminder.try(:description) %></div>
+        </div>
+    </div>
+</div>
+
+<div class="vr text_right">
+    <%= link_to "Return to Index", root_path, class: "btn" %>
+</div>

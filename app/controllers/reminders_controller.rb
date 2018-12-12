@@ -10,6 +10,7 @@ class RemindersController < ApplicationController
   def create
     reminder = Reminder.new(user: current_user, title: params[:reminder][:title], description: params[:reminder][:description])
     reminder.save!
+    redirect_to reminders_path
   end
 
   def show

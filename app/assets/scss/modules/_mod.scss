@@ -1,0 +1,7 @@
+.mod > * {
+    padding-top: 0px;
+}
+
+.mod > * + * {
+    padding-top: 10px;
+}

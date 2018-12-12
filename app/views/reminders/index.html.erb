@@ -1,9 +1,28 @@
-<%= link_to 'Create New Reminder', new_reminder_path %>
+<h2 class="hdg hdg_2">Reminders Index</h2>
+
+<div class="vr">
+    <div class="text_right">
+        <%= link_to 'Create New Reminder', new_reminder_path, class: "btn" %>
+    </div>
+</div>
 
 <% if @reminders.any? %>
-    <% @reminders.each do |reminder| %>
-    <div><%= link_to reminder.title, reminder_path(reminder) %></div>
-    <% end %>
+    <div class="vr">
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Next Send Date</th> 
+                <th>Actions</th>
+            </tr>
+            <% @reminders.each do |reminder| %>
+                <tr>
+                    <td><%= link_to reminder.title, reminder_path(reminder) %></td>
+                    <td>TBD</td> 
+                    <td>TBD</td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
 <% else %>
     <div>You have no reminders</div>
 <% end %>

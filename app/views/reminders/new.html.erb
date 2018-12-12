@@ -1,6 +1,25 @@
-<%= form_for(Reminder.new) do |f| %>
-    <%= f.hidden_field :user_id, { :value => current_user.id } %>
-    Title: <%= f.text_field :title %><br />
-    Description : <%= f.text_area :description %><br />
-    <%= f.submit %>
-<% end %>
+<h2 class="hdg hdg_2">Create New Reminder</h2>
+
+<div class="vr">
+    <%= form_for(Reminder.new) do |f| %>
+        <%= f.hidden_field :user_id, { :value => current_user.id } %>
+
+        <div class="mod">
+            <div>
+                <h3 class="hdg hdg_3">Title</h3>
+                <%= f.text_field :title, class: "form_field" %>
+            </div>
+            <div>
+                <h3 class="hdg hdg_3">Description</h3>
+                <%= f.text_area :description, class: "form_field" %>
+            </div>
+        </div>
+        
+        <div class="vr text_right">
+            <div class="hlist">
+                <div><%= f.submit "Create Reminder", class: "btn" %></div>
+                <div><%= link_to "Return to Index", root_path, class: "btn" %></div>
+            </div>
+        </div>
+    <% end %>
+</div>
