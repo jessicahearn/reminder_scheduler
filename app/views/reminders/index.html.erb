@@ -18,7 +18,9 @@
                 <tr>
                     <td><%= link_to reminder.title, reminder_path(reminder) %></td>
                     <td>TBD</td> 
-                    <td>TBD</td>
+                    <td>
+                        <%= link_to 'Delete',  reminder,  method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </td>
                 </tr>
             <% end %>
         </table>
