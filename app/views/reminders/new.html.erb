@@ -13,6 +13,34 @@
                 <h3 class="hdg hdg_3">Description</h3>
                 <%= f.text_area :description, class: "form_field" %>
             </div>
+
+            <div>
+                <h3 class="hdg hdg_3">Day of Month</h3>
+                Send my reminder on the
+                <select>
+                    <% (1..31).each do |n| %>
+                        <option value="#{n}"><%= n.ordinalize %></option>
+                    <% end %>
+                </select>
+                day from the
+                <select>
+                    <option value="from_beginning">beginning</option>
+                    <option value="from_end">end</option>
+                </select>
+                of each month.<br /><br />
+
+                <div class="text_small">(For days that do not exist in a given month, the reminder will be sent on the closest available day within the same month.)</div>
+            </div>
+
+            <div>
+                <h3 class="hdg hdg_3">Time of Day</h3>
+                Hour: <%= f.select :hour, (0..23) %> Minute: <%= f.select :minute, (0..59) %>
+            </div>
+
+            <div>
+                <h3 class="hdg hdg_3">Time Zone</h3>
+                <%= f.select :timezone, Reminder.allowed_timezones %>
+            </div>
         </div>
         
         <div class="vr text_right">
