@@ -1,0 +1,9 @@
+<%= link_to 'Create New Reminder', new_reminder_path %>
+
+<% if @reminders.any? %>
+    <% @reminders.each do |reminder| %>
+    <div><%= link_to reminder.title, reminder_path(reminder) %></div>
+    <% end %>
+<% else %>
+    <div>You have no reminders</div>
+<% end %>
