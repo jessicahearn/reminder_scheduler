@@ -12,6 +12,9 @@ class Reminder < ApplicationRecord
 
   belongs_to :user
 
+  after_create :send_confirmation_email
+  after_create :schedule_reminders
+
   module DayDirections
     FROM_BEGINNING = "from_beginning"
     FROM_END = "from_end"
@@ -68,6 +71,18 @@ class Reminder < ApplicationRecord
     return date_collection
   end
 
+  def next_occurrence
+    upcoming_send_dates(1).first
+  end
+
+  def send_confirmation_email
+    ReminderMailer.confirmation_email(self).deliver_now
+  end
+
+  def schedule_reminders
+    ReminderWorker.perform_at(next_occurrence, id)
+  end
+
 
   private
 
@@ -83,7 +98,7 @@ class Reminder < ApplicationRecord
 
   def relative_sending_day(year, month)
     # This method expects arguments in integers (e.g. (2012, 8))
-    
+
     calculated_day = absolute_sending_day
     target_month = Time.new(year, month, 1, 0,0,0)
 

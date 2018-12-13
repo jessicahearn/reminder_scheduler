@@ -16,6 +16,8 @@ gem 'shoulda-matchers'
 gem 'pry-rails'
 gem 'annotate'
 gem 'devise'
+gem 'sidekiq'
+gem 'redis', '~> 4.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -23,4 +25,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "letter_opener"
+  gem 'letter_opener_web', '~> 1.0'
 end
