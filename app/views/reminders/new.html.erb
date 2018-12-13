@@ -17,13 +17,13 @@
             <div>
                 <h3 class="hdg hdg_3">Day of Month</h3>
                 Send my reminder on the
-                <select>
+                <select name="reminder[day_number]">
                     <% (1..31).each do |n| %>
-                        <option value="#{n}"><%= n.ordinalize %></option>
+                        <option value="<%= n %>"><%= n.ordinalize %></option>
                     <% end %>
                 </select>
                 day from the
-                <select>
+                <select name="reminder[day_direction]">
                     <option value="from_beginning">beginning</option>
                     <option value="from_end">end</option>
                 </select>
@@ -39,7 +39,14 @@
 
             <div>
                 <h3 class="hdg hdg_3">Time Zone</h3>
-                <%= f.select :timezone, Reminder.allowed_timezones %>
+                <%#= f.select :timezone, "#{Reminder.new.allowed_timezones}" %>
+                <select name="reminder[timezone]">
+                    <% ActiveSupport::TimeZone.all.each do |zone| %>
+                        <option value="<%= zone.name %>">
+                            <%= zone.name %> (<%= zone.formatted_offset %>)
+                        </option>
+                    <% end %>
+                </select>
             </div>
         </div>
         

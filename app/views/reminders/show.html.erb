@@ -14,9 +14,47 @@
             <div class="hdg hdg_3">Description</div>
             <div><%= @reminder.try(:description) %></div>
         </div>
+        <div>
+            <div class="hdg hdg_3">Send Rhythm</div>
+            <div>This reminder will be sent <span class="text_strong">monthly</span>, on the 
+                <span class="text_strong"><%= @reminder.try(:day_number).try(:ordinalize) %></span> 
+                day from the 
+                <span class="text_strong"><%= @reminder.try(:day_direction_display) %></span>
+                of the month, at 
+                <span class="text_strong"><%= @reminder.try(:send_time).in_time_zone(@reminder.try(:timezone)).strftime("%H:%M") %> (<%= @reminder.try(:timezone_display) %>)</span>.
+            </div>
+        </div>
+        <div>
+            <div class="hdg hdg_3">Upcoming Send Dates</div>
+            <table class="table">
+                <tr>
+                    <th>Year</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+                <% @reminder.upcoming_send_dates(6).each do |date| %>
+                    <tr>
+                        <td>
+                            <%= date.in_time_zone(@reminder.timezone).strftime("%Y") %>
+                        </td>
+                        <td>
+                            <%= date.in_time_zone(@reminder.timezone).strftime("%B %d") %>
+                        </td>
+                        <td>
+                            <%= date.in_time_zone(@reminder.timezone).strftime("%H:%M (%Z)") %>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
     </div>
 </div>
 
 <div class="vr text_right">
-    <%= link_to "Return to Index", root_path, class: "btn" %>
+    <div class="hlist">
+        <div>
+            <%= link_to 'Delete Reminder',  @reminder,  method: :delete, data: { confirm: 'Are you sure you want to delete this remider permanently?' }, class: "btn" %>
+        </div>
+        <%= link_to "Return to Index", root_path, class: "btn" %>
+    </div>
 </div>
