@@ -1,24 +1,41 @@
-# README
+# Reminder Scheduler
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction
 
-Things you may want to cover:
+This is a simple prototype of a reminder scheduling application. The application performs the following functions:
 
-* Ruby version
+* Allows users to sign up, sign in, and change their password if forgotten
 
-* System dependencies
+* Allows users to create and schedule monthly reminders to be emailed to them on a specified day and time. (Note that if a given day does not exist in a particular month -- e.g. the 31st of February -- the reminder will be sent on the closest available day within the same month.)
 
-* Configuration
+* Allows users to delete existing reminders
 
-* Database creation
 
-* Database initialization
+## Environment Setup
 
-* How to run the test suite
+### Dependencies
 
-* Services (job queues, cache servers, search engines, etc.)
+* Ruby Version: 2.5.3
+* PostgrSQL
+* Redis
 
-* Deployment instructions
+### Local Setup
 
-* ...
+* `bundle install`
+* `bundle exec rake db:create:all`
+* `bundle exec rake db:migrate`
+* `rails s`
+
+### To Test Email/Scheduling Functionality
+
+* 'redis-server'
+* 'bundle exec sidekiq'
+
+
+## Future Recommended Features
+
+* Allow users to edit and reschedule existing reminders.
+
+* Allow users to pause or deactivate reminders without deleting them.
+
+
