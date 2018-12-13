@@ -4,11 +4,11 @@
 
 This is a simple prototype of a reminder scheduling application. The application performs the following functions:
 
-* Allows users to sign up, sign in, and change their password if forgotten
+* Allows users to sign up, sign in, and change their password if forgotten.
 
 * Allows users to create and schedule monthly reminders to be emailed to them on a specified day and time. (Note that if a given day does not exist in a particular month -- e.g. the 31st of February -- the reminder will be sent on the closest available day within the same month.)
 
-* Allows users to delete existing reminders
+* Allows users to delete existing reminders.
 
 
 ## Environment Setup
@@ -28,8 +28,8 @@ This is a simple prototype of a reminder scheduling application. The application
 
 ### To Test Email/Scheduling Functionality
 
-* 'redis-server'
-* 'bundle exec sidekiq'
+* `redis-server`
+* `bundle exec sidekiq`
 
 
 ## Future Recommended Features
