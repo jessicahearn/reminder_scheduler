@@ -38,4 +38,6 @@ This is a simple prototype of a reminder scheduling application. The application
 
 * Allow users to pause or deactivate reminders without deleting them.
 
+* As the application scales, it would be recommended to implement a more robust scheduler to ensure that jobs would not be lost in the event of server errors or other disruptions. (For instance, it might be wise to explicitly state which reminders are active, track the history of when reminders have been sent so that any missed reminders due to intermittent errors can be re-sent, and run a daily or hourly cronjob to queue up messages so that they would not have to be scheduled in sidekiq a month in advance.)
+
 

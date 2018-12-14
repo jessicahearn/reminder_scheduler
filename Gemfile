@@ -11,7 +11,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
 gem 'bootsnap'
 gem 'rspec-rails', '~> 3.0'
-gem 'factory_bot'
+gem 'factory_bot_rails'
 gem 'shoulda-matchers'
 gem 'pry-rails'
 gem 'annotate'
@@ -27,4 +27,8 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "letter_opener"
   gem 'letter_opener_web', '~> 1.0'
+end
+
+group :test do
+  gem 'simplecov'
 end
