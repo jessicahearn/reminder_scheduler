@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: reminders
+#
+#  id            :bigint(8)        not null, primary key
+#  title         :string
+#  description   :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  user_id       :bigint(8)
+#  day_direction :string
+#  day_number    :integer
+#  timezone      :string
+#  send_time     :time
+#
+
 class Reminder < ApplicationRecord
   include ActiveSupport
 
@@ -6,9 +22,15 @@ class Reminder < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :day_direction, presence: true
-  validates :day_number, presence: true
+  validates :day_number, presence: true, 
+                         numericality: { 
+                           greater_than_or_equal_to: 1, 
+                           less_than_or_equal_to: 31 
+                         }
   validates :timezone, presence: true
   validates :send_time, presence: true
+  validates_inclusion_of :day_direction, in: :allowed_directions
+  validates_inclusion_of :timezone, in: :allowed_timezones
 
   belongs_to :user
 
@@ -19,10 +41,6 @@ class Reminder < ApplicationRecord
     FROM_BEGINNING = "from_beginning"
     FROM_END = "from_end"
   end
-
-  validates_inclusion_of :day_direction, in: :allowed_directions
-
-  validates_inclusion_of :timezone, in: :allowed_timezones
 
   def allowed_directions
     DayDirections.constants(false).map{ |c| DayDirections.const_get(c) }
@@ -58,6 +76,7 @@ class Reminder < ApplicationRecord
     today = Time.now
     date_collection = []
     this_month = calculate_send_date_for(today.year, today.month)
+
     if this_month.past?
       (1..months).each do |n|
         date_collection << this_month.advance(months: n)
@@ -87,6 +106,10 @@ class Reminder < ApplicationRecord
   private
 
   def absolute_sending_day
+    # This method calculates the day of the month on which 
+    # a reminder should ideally be sent if the day is available
+    # (i.e. assuming the month has 31 days).
+
     calculated_day = day_number
 
     if day_direction == DayDirections::FROM_END
@@ -98,6 +121,9 @@ class Reminder < ApplicationRecord
 
   def relative_sending_day(year, month)
     # This method expects arguments in integers (e.g. (2012, 8))
+    # and calculates the day on which a reminder should be sent
+    # within a specific month, accounting for variations in the number
+    # of days in each month.
 
     calculated_day = absolute_sending_day
     target_month = Time.new(year, month, 1, 0,0,0)

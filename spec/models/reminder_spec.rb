@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: reminders
+#
+#  id            :bigint(8)        not null, primary key
+#  title         :string
+#  description   :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  user_id       :bigint(8)
+#  day_direction :string
+#  day_number    :integer
+#  timezone      :string
+#  send_time     :time
+#
+
 require 'rails_helper'
 require 'spec_helper'
 
@@ -35,6 +51,14 @@ RSpec.describe Reminder, type: :model do
 
   it "should not create a new reminder if day_number is not provided" do
     Reminder.create(attributes_for(:reminder, day_number: nil))
+    expect(Reminder.count).to eq(0)
+  end
+
+  it "should not create a new reminder if invalid day_number is provided" do
+    user = create(:user)
+    Reminder.create(attributes_for(:reminder, user: user, day_number: 100))
+    expect(Reminder.count).to eq(0)
+    Reminder.create(attributes_for(:reminder, user: user, day_number: -10))
     expect(Reminder.count).to eq(0)
   end
 
